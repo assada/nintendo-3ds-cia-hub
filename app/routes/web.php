@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+\Illuminate\Support\Facades\URL::forceRootUrl(env('APP_URL'));
 Route::get('/', ['uses' => 'Index@index']);
 Route::get('/add', ['uses' => 'Index@add']);
 Route::post('/add', ['uses' => 'Index@store'])->name('store');
