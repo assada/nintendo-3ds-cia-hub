@@ -4,7 +4,9 @@ services:
     restart: always
     image: lucaslorentz/caddy-docker-proxy:alpine
     ports:
-      - 80:2015
+      - 80:80
+      - 443:443
+      - 2015:2015
     networks:
       - caddy
     command: -email assada.ua@gmail.com -agree=true -log stdout
@@ -33,7 +35,7 @@ services:
     labels:
       caddy.address: 3ds.kill.guru
       caddy.targetport: "80"
-      caddy.tls: "on"
+      caddy.tls: "assada.ua@gmail.com"
 
 networks:
   caddy:
