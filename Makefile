@@ -33,12 +33,7 @@ endif
 
 .PHONY: build
 build: ## Build or rebuild service image
-	docker build \
-		--build-arg VERSION=$(VERSION) \
-		--build-arg BUILD_ID=$(BUILD_ID) \
-		-t $(IMAGE_NAME):$(IMAGE_TAG) \
-		--no-cache \
-		--force-rm .
+	docker-compose build
 
 .PHONY: up
 up: ## Starts and attaches to containers for a service
