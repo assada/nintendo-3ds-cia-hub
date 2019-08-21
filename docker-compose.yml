@@ -33,7 +33,7 @@ services:
     networks:
       - caddy
     labels:
-      caddy.address: 3ds.kill.guru
+      caddy.address: "https://3ds.kill.guru"
       caddy.tls: "assada.ua@gmail.com"
 
 networks:
