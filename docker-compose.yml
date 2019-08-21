@@ -37,4 +37,5 @@ services:
 
 networks:
   caddy:
-    driver: local
+    external:
+      name: assada-services
