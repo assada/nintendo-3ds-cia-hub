@@ -1,14 +1,5 @@
 version: '3'
 services:
-  database:
-    restart: always
-    build:
-      context: ./database
-    environment:
-      - MYSQL_DATABASE=3ds
-      - MYSQL_USER=3ds
-      - MYSQL_PASSWORD=1234
-      - MYSQL_ROOT_PASSWORD=1234
   php-fpm:
     build:
       context: ./php-fpm

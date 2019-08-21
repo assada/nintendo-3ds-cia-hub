@@ -38,7 +38,7 @@ class Index extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(Request $request) //TODO: Create custom request
     {
         $folderName = 'cia/' . Str::slug($request->get('name'));
 
