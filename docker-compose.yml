@@ -1,0 +1,30 @@
+version: '3'
+services:
+  database:
+    restart: always
+    build:
+      context: ./database
+    environment:
+      - MYSQL_DATABASE=3ds
+      - MYSQL_USER=3ds
+      - MYSQL_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=1234
+  php-fpm:
+    build:
+      context: ./php-fpm
+    volumes:
+      - ./app:/var/www
+      - ./php-fpm/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+  nginx:
+    ports:
+      - "80:80"
+      - "443:443"
+    build:
+      context: ./nginx
+    volumes:
+      - ./app:/var/www
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+    depends_on:
+      - php-fpm
