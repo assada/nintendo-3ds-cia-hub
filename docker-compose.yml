@@ -1,15 +1,34 @@
-version: '3'
+version: '3.7'
 services:
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy:alpine
+    ports:
+      - 80:2015
+    networks:
+      - caddy
+    command: -email assada.ua@gmail.com -agree=true -log stdout
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      replicas: 1
+      restart_policy:
+        condition: any
+      resources:
+        reservations:
+          cpus: '0.1'
+          memory: 200M
   php-fpm:
     build:
       context: ./php-fpm
     volumes:
       - ./app:/var/www
       - ./php-fpm/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+    networks:
+      - caddy
   nginx:
-    ports:
-      - "80:80"
-      - "443:443"
     build:
       context: ./nginx
     volumes:
@@ -19,3 +38,13 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d
     depends_on:
       - php-fpm
+    networks:
+      - caddy
+    labels:
+      caddy.address: 3ds.kill.guru
+      caddy.targetport: "80"
+      caddy.tls: "on"
+
+networks:
+  caddy:
+    driver: overlay
