@@ -34,7 +34,6 @@ services:
       - caddy
     labels:
       caddy.address: 3ds.kill.guru
-      caddy.targetport: "80"
       caddy.tls: "assada.ua@gmail.com"
 
 networks:
