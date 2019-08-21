@@ -22,12 +22,19 @@ make build
 make up
 ```
 
-3) Go to php container:
+3) Install dependencies:
+```bash
+make install
+```
+
+or
+
+Attach to container:
+
 ```bash
 make bash
 ```
 
-4) Install dependencies:
 ```bash
 cd /var/www
 composer install
