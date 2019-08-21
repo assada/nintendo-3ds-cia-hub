@@ -12,7 +12,7 @@
 */
 
 $url = parse_url(env('APP_URL'));
-\Illuminate\Support\Facades\URL::forceRootUrl($url['host']);
+\Illuminate\Support\Facades\URL::forceRootUrl(env('APP_URL'));
 \Illuminate\Support\Facades\URL::forceScheme($url['scheme']);
 
 Route::get('/', ['uses' => 'Index@index']);
