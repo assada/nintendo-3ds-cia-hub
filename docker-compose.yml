@@ -12,6 +12,7 @@ services:
     command: -email assada.ua@gmail.com -agree=true -log stdout
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - caddy:/root/.caddy
   php-fpm:
     build:
       context: ./php-fpm
@@ -35,7 +36,9 @@ services:
     labels:
       caddy.address: "https://3ds.kill.guru"
       caddy.tls: "assada.ua@gmail.com"
-
+volumes:
+  caddy:
+    driver: local
 networks:
   caddy:
     external:
