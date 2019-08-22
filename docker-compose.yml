@@ -9,7 +9,7 @@ services:
       - 2015:2015
     networks:
       - caddy
-    command: -port 80 -email assada.ua@gmail.com -agree=true -log stdout
+    command: -email assada.ua@gmail.com -agree=true -log stdout
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   php-fpm:
